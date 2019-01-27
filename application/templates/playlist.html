@@ -7,9 +7,7 @@
       </div>
 
       <div class=playlist-search-terms>
-        {% for term in search_terms %}
-          {{ term }}
-        {% endfor %}
+        <h3>{{ ", ".join(search_terms) }}</h3>
       </div>
     </div>
 
@@ -17,8 +15,8 @@
 
     <table>
       <thead>
-        <td>Song</td>
-        <td>Artist</td>
+        <td><h2>Song</h2></td>
+        <td><h2>Artist</h2></td>
       </thead>
       <tbody>
         {% for song in songs %}
