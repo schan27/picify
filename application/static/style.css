@@ -38,6 +38,11 @@ p {
   padding: 1rem 2rem;
   border-radius: 2rem;
   margin: 1rem 0;
+  transition: all 0.3s;
+}
+
+.spotify-button:disabled {
+  background-color: #ccc;
 }
 
 /* first things first - get your box-model straight*/
@@ -88,4 +93,9 @@ label {
 
 .upload-button:hover .upload-cover {
     background-color: #f06;
+}
+
+.upload-form {
+  display: flex;
+  justify-content: space-between;
 }
