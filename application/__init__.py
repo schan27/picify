@@ -38,7 +38,8 @@ def index():
         print(token_request.json())
         flask.session["access_token"] = token_request.json()["access_token"]
 
-    if flask.request.args.get('method') is not None:
+    # Set song curation method
+    if flask.request.args.get('method') is not None or flask.session.get('method') is None:
         if flask.request.args.get('method') == 'tracks':
             flask.session["method"] = "tracks"
         else:
