@@ -1,7 +1,13 @@
 from datamuse import datamuse
 import nltk
 from nltk.corpus import wordnet
-
+import ssl
+try:
+    _create_unverified_https_context = ssl._create_unverified_context
+except AttributeError:
+    pass
+else:
+    ssl._create_default_https_context = _create_unverified_https_context
 
 # Download wordnet data if we don't have it already
 try:
