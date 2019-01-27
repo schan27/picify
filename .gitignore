@@ -181,4 +181,5 @@ gcp_credentials.json
 
 .DS_Store
 !application/images
+!application/images/testimage.jpg
 application/images/**
