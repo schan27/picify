@@ -32,6 +32,7 @@ def index():
         flask.session['authorization_code'] = flask.request.args.get('code')
     return flask.render_template('index.html', authorization_code=flask.session.get('authorization_code', ''), client_id=os.getenv('client_id'), redirect_uri=os.getenv('redirect_uri'))
 
+@app.route('/upload', methods=['POST'])
 def upload_file(name=None):
     if flask.request.method == 'POST':
         # check if the post flask.request has the file part
