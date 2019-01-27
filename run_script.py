@@ -20,10 +20,11 @@ def main():
         raw_image = image_file.read()
 
     # Analyse the image
-    responses = parse_image(raw_image, credentials)
+    image_details = parse_image(raw_image, credentials)
 
     # DEBUG: print responses
-    print(responses)
+    print(image_details)
+
 
 if __name__ == "__main__":
     # Run it
