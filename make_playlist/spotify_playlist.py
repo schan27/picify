@@ -36,3 +36,6 @@ def create_empty_playlist(user_id, name, description=None, public=True):
     )
 
     assert response.status_code in (response.codes.ok, response.codes.created)
+
+    # Return the playlist URI
+    return response.json()["uri"]
