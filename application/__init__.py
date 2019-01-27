@@ -55,4 +55,5 @@ def upload_file(name=None):
             filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             file.save(filepath)
             songs = make_playlist.get_songs(filepath)
+            flask.session['songs'] = songs
             return flask.render_template('playlist.html', songs=songs)

@@ -5,9 +5,26 @@
 
 <body>
   <h1>Picify</h1>
+  <section id="playlist">
+    <table>
+      <thead>
+        <td>Song</td>
+        <td>Artist</td>
+      </thead>
+      <tbody>
+        {% for song in songs %}
+        <tr>
+          <td>{{ song.name }}</td>
+          <td>{{ song.artists }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <form method="post" action="/create">
+      <button type="submit">Create Playlist</button>
+    </form>
+  </section>
   <ul>
-  {% for song in songs %}
-  <li>{{ song.name }}</li>
-  {% endfor %}
+
   </ul>
 </body>
