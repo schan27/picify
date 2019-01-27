@@ -1,9 +1,6 @@
-<!doctype html>
-<head>
-  <title>Upload new File</title>
-</head>
-<body>
-  <h1>Picture 2 Playlist</h1>
+{% extends 'base.html' %}
+
+{% block content %}
   <p>
     This app generates a playlist for your uploaded photo. To use it, please log in with Spotify below. You will be redirected to Spotify to log in.
   </p>
@@ -17,5 +14,4 @@
   </form>
   {% endif %}
 
-
-</body>
+{% endblock %}

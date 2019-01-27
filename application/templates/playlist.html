@@ -1,11 +1,7 @@
-<!doctype html>
-<head>
-  <title>Upload new File</title>
-</head>
+{% extends 'base.html' %}
 
-<body>
-  <h1>Picify</h1>
-  <section id="playlist">
+{% block content %}
+
     <table>
       <thead>
         <td>Song</td>
@@ -23,8 +19,5 @@
     <form method="post" action="/create">
       <button type="submit">Create Playlist</button>
     </form>
-  </section>
-  <ul>
 
-  </ul>
-</body>
+{% endblock %}
