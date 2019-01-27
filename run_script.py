@@ -29,10 +29,10 @@ def main():
     adjectives_cluster = []
 
     for word in word_cluster:
-        adjectives_cluster += get_associated_adjectives(word, 5)
+        adjectives_cluster += get_associated_adjectives(word, 1)
 
         # DEBUG printing!
-        adjectives = get_associated_adjectives(word, 5)
+        adjectives = get_associated_adjectives(word, 1)
         print(word)
         print(adjectives)
         print()
