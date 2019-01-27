@@ -19,7 +19,7 @@ def allowed_file(filename):
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @app.route('/', methods=['GET', 'POST'])
-def upload_file():
+def upload_file(name=None):
     if flask.request.method == 'POST':
         # check if the post flask.request has the file part
         if 'file' not in flask.request.files:
