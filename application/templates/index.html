@@ -6,7 +6,7 @@
   <p>Picify uses Google Cloud Vision to generate playlists based on image analysis. For example, if you upload a photo of a happy couple, you might get a playlist full of love, romance, and cheek kisses. To use it, please log in with Spotify below. You may be redirected to Spotify.</p>
 
   {% if authorization_code == None %}
-  <a href="https://accounts.spotify.com/authorize?client_id={{ client_id }}&scope={{ scope }}&response_type=code&redirect_uri={{ redirect_uri }}"><img src="/static/login.png" alt="Login with Spotify" /></a>
+  <a id="login-button" class="spotify-button" href="https://accounts.spotify.com/authorize?client_id={{ client_id }}&scope={{ scope }}&response_type=code&redirect_uri={{ redirect_uri }}"><img src="/static/spotify-icon.png" alt="spotify icon" />Login with Spotify</a>
   {% else %}
   <form class="upload-form" method="post" enctype="multipart/form-data" action="/playlist">
     <div class="upload-button">

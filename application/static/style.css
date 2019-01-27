@@ -16,6 +16,19 @@
   font-weight: 700;
 }
 
+.logo img {
+    width: 3rem;
+    position: relative;
+    line-height: 5rem;
+    top: 0.5rem;
+    border-radius: 1rem;
+}
+
+.logo-text {
+  display: inline;
+  border-bottom: none;
+}
+
 .playlist-prologue {
   display: flex;
   flex-direction:row;
@@ -85,13 +98,25 @@ p {
   border-radius: 2rem;
   margin: 1rem 0;
   transition: all 0.3s;
+  text-decoration: none;
 }
 
 .spotify-button:disabled {
   background-color: #ccc;
 }
 
+.spotify-button img {
+  display: inline;
+  width: 2rem;
+  position: relative;
+  top: 0.2rem;
+  margin-right: 1rem;
+}
 
+#login-button {
+  display: table;
+  margin: auto;
+}
 
 label {
     /* just positioning */
