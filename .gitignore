@@ -180,3 +180,4 @@ dmypy.json
 gcp_credentials.json
 
 .DS_Store
+application/images/*
