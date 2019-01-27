@@ -29,7 +29,7 @@ def main():
     adjectives_cluster = []
 
     for word in word_cluster:
-        adjectives_cluster = get_associated_adjectives(word, 5)
+        adjectives_cluster += get_associated_adjectives(word, 5)
 
         # DEBUG printing!
         adjectives = get_associated_adjectives(word, 5)
@@ -42,7 +42,7 @@ def main():
     whitelisted_words_set = word_cluster_set & whitelist
 
     # DEBUG see what was whitelisted out
-    print("WHITELISTED WORDS")
+    print("REMOVED WORDS")
     print(word_cluster_set - whitelisted_words_set)
     print()
     print("WORDS WE KEEP")
