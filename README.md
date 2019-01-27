@@ -1,4 +1,4 @@
-# Picify :musical_note:
+# :mount_fuji: Picify
 
 **Picify** is a [Flask](http://flask.pocoo.org) web application that converts your photos into Spotify playlists that can be saved for later listening, providing a uniquely personal way to explore new music. Try it [here](http://picify.net/).
 
