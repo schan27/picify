@@ -1,5 +1,11 @@
 from datamuse import datamuse
+import nltk
+from nltk.corpus import wordnet
 
+try:
+    nltk.data.find('wordnet')
+except LookupError:
+    nltk.download('wordnet')
 
 def is_word_adjective(word):
     """Determine if a word is an adjective.
@@ -10,7 +16,9 @@ def is_word_adjective(word):
     Returns (bool):
         True if the word is an adjective, false otherwise.
     """
-    pass
+
+    first_synset = wordnet.synsets(word)[0]
+    return (first_synset.pos() == 'a')
 
 
 def get_associated_adjectives(word, n):
