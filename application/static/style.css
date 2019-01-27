@@ -86,6 +86,7 @@ p {
 
 .container {
   margin: 6rem 8rem;
+  max-width: 1000px;
 }
 
 .spotify-button {
