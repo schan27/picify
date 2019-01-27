@@ -7,32 +7,34 @@
       </div>
 
       <div class=playlist-search-terms>
-        {% for term in search_terms %}
-          {{ term }}
-        {% endfor %}
+        <h3>{{ ", ".join(search_terms) }}</h3>
       </div>
     </div>
-
-    <h2>{{ session['playlist_name'] }}</h2>
-
+    <p>Here's your new playlist:</p>
+    <div class="playlist-header">
+      <h2 class="playlist-title">{{ session['playlist_name'] }}</h2>
+      <form method="post" action="/create">
+        <div style="text-align: center;">
+            <button type="submit" class="spotify-button" style="margin-top: 1em;">Create Playlist</button>
+        </div>
+      </form>
+    </div>
     <table>
       <thead>
-        <td>Song</td>
-        <td>Artist</td>
+        <td><h2>#</h2></td>
+        <td><h2>Song</h2></td>
+        <td><h2>Artist</h2></td>
       </thead>
       <tbody>
         {% for song in songs %}
         <tr>
+          <td>{{ loop.index }}</td>
           <td>{{ song.name }}</td>
           <td>{{ song.artists }}</td>
         </tr>
         {% endfor %}
       </tbody>
     </table>
-    <form method="post" action="/create">
-      <div style="text-align: center;">
-          <button type="submit" class="spotify-button" style="margin-top: 1em;">Create Playlist</button>
-      </div>
-    </form>
+
 
 {% endblock %}

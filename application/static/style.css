@@ -1,3 +1,10 @@
+/* first things first - get your box-model straight*/
+*, *:before, *:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
 @font-face {
   font-family: 'Gotham';
   src: url('Gotham.woff2') format('woff2');
@@ -11,21 +18,36 @@
 
 .playlist-prologue {
   display: flex;
+  flex-direction:row;
+  align-items: center;
 }
 
-
 .playlist-image {
-  /* width: 50%; */
+  width: 50%;
   display: inline-block;
+
+
+}
+.playlist-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+align-items: center;
+}
+.playlist-title {
+  font-size: 4rem;
 }
 
 .playlist-image img {
-  width: 50%;
+  width: 100%;
+  border-radius: 1rem;
+box-shadow: 0px 0px 40px 5px rgba(255,255,255,0.37);
 }
 
 .playlist-search-terms {
-  /* width: 50%; */
   display: inline-block;
+  width: 50%;
+margin-left: 2rem;
 }
 
 body {
@@ -38,6 +60,10 @@ h1 {
   display: inline-block;
   font-weight: 700;
   font-size: 3rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  display: inline-block;
   border-bottom: 3px solid green;
 }
 
@@ -46,7 +72,7 @@ p {
 }
 
 .container {
-  margin: 6rem 12rem;
+  margin: 6rem 8rem;
 }
 
 .spotify-button {
@@ -65,12 +91,7 @@ p {
   background-color: #ccc;
 }
 
-/* first things first - get your box-model straight*/
-*, *:before, *:after {
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-}
+
 
 label {
     /* just positioning */
@@ -118,4 +139,8 @@ label {
 .upload-form {
   display: flex;
   justify-content: space-between;
+}
+
+tr {
+  height: 3rem;
 }
