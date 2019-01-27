@@ -4,16 +4,20 @@ import flask
 import requests
 
 
-def create_empty_playlist(user_id, name, public=True, description=None):
+def create_empty_playlist(user_id, name, description=None, public=True):
     """Creates an empty Spotify playlist for the user.
 
     Args:
         user_id (string): The user's Spotify ID.
         name (string): The name of the playlist.
-        public (boolean, optional): A boolean signaling if the playlist
-            should be public. Defaults to True.
         description (string, optional): The playlist's description.
             Defaults to None.
+        public (boolean, optional): A boolean signaling if the playlist
+            should be public. Defaults to True.
+
+    Returns (string):
+        The full playlist URI. For example,
+        "spotify:user:thelinmichael:playlist:7d2D2S200NyUE5KYs80PwO".
 
     Raises:
         AssertionError: The HTTP request to create the playlist failed.
