@@ -7,7 +7,7 @@
   <p>
     This app generates a playlist for your uploaded photo. To use it, please log in with Spotify below. You will be redirected to Spotify to log in.
   </p>
-  
+
   {% if authorization_code == None %}
   <a href="https://accounts.spotify.com/authorize?client_id={{ client_id }}&response_type=code&redirect_uri={{ redirect_uri }}"><img src="/static/login.png" alt="Login with Spotify" /></a>
   {% else %}
