@@ -99,6 +99,11 @@ p {
   margin: 6rem 8rem;
   max-width: 1000px;
 }
+@media (max-width: 699px) {
+    .container {
+        margin: 3rem 4rem;
+    }
+}
 
 .spotify-button {
   font-family: 'Gotham';
