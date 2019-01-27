@@ -24,6 +24,11 @@ def main():
     # Analyse the image
     image_details = parse_image(raw_image, credentials, confidence_threshold=0.9)
 
+    # DEBUG print the title
+    print(image_details["title"])
+    print("-" * len(image_details["title"]))
+    print()
+
     # Grab adjectives of all the labels and web entities
     word_cluster = image_details["labels"] + image_details["web_entities"]
     adjectives_cluster = []
@@ -33,8 +38,12 @@ def main():
 
         # DEBUG printing!
         adjectives = get_associated_adjectives(word, 1)
+        print("KEYWORD")
         print(word)
+        print()
+        print("KEYWORD + ADJECTIVE")
         print(adjectives)
+        print()
         print()
 
     # Grab the intersection of the whitelist and all the words
