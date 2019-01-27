@@ -1,21 +1,32 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+
   <p>Picify uses Google Cloud Vision to generate playlists based on image analysis. For example, if you upload a photo of a happy couple, you might get a playlist full of love, romance, and cheek kisses. To use it, please log in with Spotify below. You may be redirected to Spotify.</p>
 
   {% if authorization_code == None %}
   <a href="https://accounts.spotify.com/authorize?client_id={{ client_id }}&scope={{ scope }}&response_type=code&redirect_uri={{ redirect_uri }}"><img src="/static/login.png" alt="Login with Spotify" /></a>
   {% else %}
-  <form method="post" enctype="multipart/form-data" action="/playlist">
+  <form class="upload-form" method="post" enctype="multipart/form-data" action="/playlist">
     <div class="upload-button">
         <div class="spotify-button">
              Upload an Image
         </div>
         <!-- this is later in the source so it'll be "on top" -->
-        <input name="file" type="file" />
+        <input name="file" type="file" onChange="javascript:checkIfFileSelected(this)" />
     </div>
-    <input class="spotify-button" type="submit" value="Picify It" />
+    <input id="picify-button" class="spotify-button" type="submit" disabled value="Picify It" />
   </form>
   {% endif %}
+  <script type="text/javascript">
+  function checkIfFileSelected(input) {
+      var file = input.files[0];
 
+      if (file) {
+          document.getElementById("picify-button").removeAttribute("disabled");
+      }
+    }
+
+  </script>
 {% endblock %}
