@@ -19,10 +19,9 @@ with io.open(file_name, "rb") as image_file:
 
 image = types.Image(content=content)
 
-# Performs label detection on the image file
-response = client.label_detection(image=image)
-labels = response.label_annotations
+# Look at the image
+label_response = client.label_detection(image=image)
+print(label_response)
 
-print("Labels:")
-for label in labels:
-    print(label.description)
+web_response = client.web_detection(image=image)
+print(web_response)
