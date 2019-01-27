@@ -43,6 +43,7 @@ def upload_file(name=None):
         # check if the post flask.request has the file part
         if 'file' not in flask.request.files:
             flask.flash('No file part')
+            print('nope')
             return flask.redirect(flask.request.url)
         file = flask.request.files['file']
         # if user does not select file, browser also

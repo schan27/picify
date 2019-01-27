@@ -32,6 +32,7 @@ p {
 .spotify-button {
   font-family: 'Gotham';
   color: #FFF;
+  border: none;
   font-size: 2rem;
   background-color: #1DB954;
   padding: 1rem 2rem;
@@ -39,16 +40,52 @@ p {
   margin: 1rem 0;
 }
 
-.upload-button-wrapper {
-  position: relative;
-  overflow: hidden;
-  display: inline;
+/* first things first - get your box-model straight*/
+*, *:before, *:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
-.upload-button-wrapper input[type=file] {
-  font-size: 100px;
-  position: absolute;
-  left: 0;
-  top: 0;
-  opacity: 0;
+label {
+    /* just positioning */
+    float: left;
+    margin-bottom: .5em;
+}
+
+.upload-button {
+    /* key */
+    position: relative;
+    overflow: hidden;
+
+    /* just positioning */
+    float: left;
+    clear: left;
+}
+
+.upload-cover {
+    /* basically just style this however you want - the overlaying file upload should spread out and fill whatever you turn this into */
+    background-color: gray;
+    text-align: center;
+    padding: .5em 1em;
+    border-radius: 2em;
+    border: 5px solid rgba(0,0,0,.1);
+
+    cursor: pointer;
+}
+
+.upload-button input[type="file"] {
+    display: block;
+    position: absolute;
+    top: 0; left: 0;
+    margin-left: -75px; /* gets that button with no-pointer-cursor off to the left and out of the way */
+    width: 200%; /* over compensates for the above - I would use calc or sass math if not here*/
+    height: 100%;
+    opacity: .0; /* left this here so you could see. Make it 0 */
+    cursor: pointer;
+    border: 1px solid red;
+}
+
+.upload-button:hover .upload-cover {
+    background-color: #f06;
 }

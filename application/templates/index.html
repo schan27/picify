@@ -6,13 +6,15 @@
   {% if authorization_code == None %}
   <a href="https://accounts.spotify.com/authorize?client_id={{ client_id }}&scope={{ scope }}&response_type=code&redirect_uri={{ redirect_uri }}"><img src="/static/login.png" alt="Login with Spotify" /></a>
   {% else %}
-  <form method=post enctype=multipart/form-data action="/playlist">
-    <div class="upload-button-wrapper">
-      <button class="spotify-button">Choose an Image</button>
-      <input type="file" name="file">
+  <form method="post" enctype="multipart/form-data" action="/playlist">
+    <div class="upload-button">
+        <div class="spotify-button">
+             Upload an Image
+        </div>
+        <!-- this is later in the source so it'll be "on top" -->
+        <input name="file" type="file" />
     </div>
-
-    <input class="spotify-button" type="submit" value="Upload"/>
+    <input class="spotify-button" type="submit" value="Picify It" />
   </form>
   {% endif %}
 
