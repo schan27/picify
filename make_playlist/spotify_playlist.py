@@ -62,6 +62,7 @@ def create_empty_playlist(user_id, name, description=None, public=True):
     assert response.status_code in (requests.codes.ok, requests.codes.created)
 
     # Return the playlist URI
+    print(response.json())
     return response.json()["id"]
 
 
@@ -122,3 +123,4 @@ def create_spotify_playlist_with_songs(
 
     # Add songs to the playlist
     add_songs_to_playlist(playlist_id, song_ids)
+    return playlist_id

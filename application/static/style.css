@@ -16,6 +16,9 @@
   font-weight: 700;
 }
 
+.logo {
+  margin-bottom: 2rem;
+}
 .logo img {
     width: 3rem;
     position: relative;
@@ -38,9 +41,8 @@
 .playlist-image {
   width: 50%;
   display: inline-block;
-
-
 }
+
 .playlist-header {
   display: flex;
   flex-direction: row;
@@ -114,9 +116,19 @@ p {
   margin-right: 1rem;
 }
 
-#login-button {
+.special-button {
   display: table;
   margin: auto;
+}
+
+.code-link {
+  display: table;
+  margin: 2rem auto;
+  font-size: 2rem;
+  text-align: center;
+  overflow-wrap: break-word;
+  word-break: break-all;
+  font-family: monospace;
 }
 
 label {
