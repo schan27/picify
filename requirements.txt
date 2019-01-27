@@ -16,6 +16,7 @@ nltk==3.4
 protobuf==3.6.1
 pyasn1==0.4.5
 pyasn1-modules==0.2.4
+python-datamuse==1.2.1
 pytz==2018.9
 requests==2.21.0
 rsa==4.0
