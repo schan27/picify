@@ -47,8 +47,3 @@ def get_search_terms(filepath):
     flask.session['playlist_name'] = image_details['title']
 
     return search_terms
-
-
-def get_songs(search_terms):
-    # TODO: add adjectives and whitelist logic
-    return search.search(search_terms)
