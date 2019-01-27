@@ -11,10 +11,12 @@
 </head>
 <body>
   <div class="container">
-    <a class="logo" href="/">
-      <img src="/static/icon.png" alt="logo" />
-      <h1 class="logo-text"><a href="{{ url_for('index') }}" style="text-decoration: none; color: inherit;">Picify</a></h1>
-    </a>
+    <div class="logo">
+      <a href="{{ url_for('index') }}" style="text-decoration: none; color: inherit;">
+        <img src="/static/icon.png" alt="logo" />
+        <h1 class="logo-text">Picify</h1>
+      </a>
+    </div>
 
       <section class="content animated fadeIn">
         {% block content %}

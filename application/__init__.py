@@ -38,6 +38,12 @@ def index():
         print(token_request.json())
         flask.session["access_token"] = token_request.json()["access_token"]
 
+    if flask.request.args.get('method') is not None:
+        if flask.request.args.get('method') == 'tracks':
+            flask.session["method"] = "tracks"
+        else:
+            flask.session["method"] = "playlists"
+
     return flask.render_template('index.html', authorization_code=flask.session.get('authorization_code', None), client_id=os.getenv('client_id'), redirect_uri=os.getenv('redirect_uri'), scope="playlist-modify-public playlist-modify-private")
 
 @app.route('/playlist', methods=['POST'])
@@ -60,7 +66,13 @@ def upload_file(name=None):
             file.save(filepath)
             global songs
             search_terms = make_playlist.get_search_terms(filepath)
-            songs = make_playlist.get_songs(search_terms)
+
+            # Set song curation method based on query param
+            if flask.session['method'] == 'tracks':
+                songs = make_playlist.search.search(search_terms)
+            else:
+                songs = make_playlist.search.search_by_playlist(search_terms)
+
             imagepath = os.path.join("/", "static", "images", filename)
             return flask.render_template('playlist.html', search_terms=search_terms, imagepath=imagepath, songs=songs)
 
