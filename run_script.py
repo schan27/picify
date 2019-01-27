@@ -22,7 +22,7 @@ def main():
         raw_image = image_file.read()
 
     # Analyse the image
-    image_details = parse_image(raw_image, credentials)
+    image_details = parse_image(raw_image, credentials, confidence_threshold=0.9)
 
     # Grab adjectives of all the labels and web entities
     word_cluster = image_details["labels"] + image_details["web_entities"]
