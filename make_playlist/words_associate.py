@@ -3,6 +3,7 @@ import nltk
 from nltk.corpus import wordnet
 
 
+# Download wordnet data if we don't have it already
 try:
     nltk.data.find("wordnet")
 except LookupError:
