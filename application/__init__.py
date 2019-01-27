@@ -18,6 +18,7 @@ credentials = service_account.Credentials.from_service_account_file(
 )
 
 app = flask.Flask(__name__)
+app.secret_key = os.getenv('secret_key')
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 # http://flask.pocoo.org/docs/1.0/patterns/fileuploads/
@@ -27,6 +28,8 @@ def allowed_file(filename):
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
+    if (flask.request.args.get('code') != 'None'):
+        flask.session['authorization_code'] = flask.request.args.get('code')
     return flask.render_template('index.html', authorization_code=flask.session.get('authorization_code', ''), client_id=os.getenv('client_id'), redirect_uri=os.getenv('redirect_uri'))
 
 def upload_file(name=None):
