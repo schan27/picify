@@ -1,6 +1,7 @@
 """Create Spotify playlists."""
 
 import flask
+import json
 import requests
 
 
@@ -31,11 +32,11 @@ def create_empty_playlist(user_id, name, description=None, public=True):
     # Make request and validate
     response = requests.post(
         "https://api.spotify.com/v1/users/%s/playlists" % user_id,
-        data=request_data,
+        data=json.dumps(request_data),
         headers={"Authorization": "Bearer " + flask.session.get("access_token")},
     )
 
-    assert response.status_code in (response.codes.ok, response.codes.created)
+    assert response.status_code in (requests.codes.ok, requests.codes.created)
 
     # Return the playlist URI
     return response.json()["uri"]
