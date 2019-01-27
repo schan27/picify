@@ -40,7 +40,8 @@ def get_search_terms(filepath):
             confidence_threshold -= 0.1
 
         # Always include the highest confidence web entity
-        search_terms.insert(0, image_details["web_entities"][0])
+        if image_details["web_entities"]:
+            search_terms.insert(0, image_details["web_entities"][0])
 
     # set the playlist name from the 'best guess' from Google
     flask.session['playlist_name'] = image_details['title']
