@@ -28,6 +28,15 @@
 
 
 }
+.playlist-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+align-items: center;
+}
+.playlist-title {
+  font-size: 4rem;
+}
 
 .playlist-image img {
   width: 100%;
