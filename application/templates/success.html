@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <p>Enjoy your new playlist. Here's a link you can share with your friends:</p>
+  <p>Enjoy your new playlist {{ owner }}. Here's a link you can share with your friends:</p>
   <p class="code-link">http://open.spotify.com/playlist/{{ playlist_id }}</p>
-<a class="special-button spotify-button" href="http://open.spotify.com/playlist/{{ playlist_id }}" ><img src="/static/spotify-icon.png" alt="spotify icon" />Open {{ playlist_name }} on Spotify</a>
+<a class="special-button spotify-button" href="http://open.spotify.com/playlist/{{ playlist_id }}" ><img src="/static/spotify-icon.png" alt="spotify icon" />Open <b>{{ playlist_name }}</b> on Spotify</a>
 {% endblock %}

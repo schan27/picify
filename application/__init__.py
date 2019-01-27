@@ -84,5 +84,5 @@ def create_playlist():
     print(flask.session["playlist_name"])
     playlist_name = flask.session["playlist_name"]
     song_ids = [song['id'] for song in songs]
-    playlist_id = make_playlist.spotify_playlist.create_spotify_playlist_with_songs(song_ids, playlist_name)
-    return flask.render_template('success.html', playlist_id=playlist_id, playlist_name=playlist_name)
+    playlist_id, owner = make_playlist.spotify_playlist.create_spotify_playlist_with_songs(song_ids, playlist_name)
+    return flask.render_template('success.html', owner=owner, playlist_id=playlist_id, playlist_name=playlist_name)

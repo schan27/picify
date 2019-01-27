@@ -62,8 +62,7 @@ def create_empty_playlist(user_id, name, description=None, public=True):
     assert response.status_code in (requests.codes.ok, requests.codes.created)
 
     # Return the playlist URI
-    print(response.json())
-    return response.json()["id"]
+    return response
 
 
 def add_songs_to_playlist(playlist_id, song_ids):
@@ -96,8 +95,8 @@ def add_songs_to_playlist(playlist_id, song_ids):
         data=json.dumps({"uris": song_ids}),
         headers={"Authorization": "Bearer " + flask.session.get("access_token")},
     )
-    print(response.json())
-    assert response.status_code == requests.codes.created
+
+    # assert response.status_code == requests.codes.created
 
 
 def create_spotify_playlist_with_songs(
@@ -117,10 +116,13 @@ def create_spotify_playlist_with_songs(
     user_id = get_user_id()
     print('playlist name: ' + playlist_name)
     # Create a playlist
-    playlist_id = create_empty_playlist(
+    response = create_empty_playlist(
         user_id, playlist_name, description=playlist_description, public=playlist_public
     )
 
+    playlist_id = response.json()["id"]
+
     # Add songs to the playlist
     add_songs_to_playlist(playlist_id, song_ids)
-    return playlist_id
+
+    return playlist_id, response.json()["owner"]["display_name"]
