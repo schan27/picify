@@ -35,7 +35,7 @@ def index():
         access_token = token_request.json()["access_token"]
         flask.session['access_token'] = access_token
 
-    return flask.render_template('index.html', authorization_code=flask.session.get('authorization_code', None), client_id=os.getenv('client_id'), redirect_uri=os.getenv('redirect_uri'))
+    return flask.render_template('index.html', authorization_code=flask.session.get('authorization_code', None), client_id=os.getenv('client_id'), redirect_uri=os.getenv('redirect_uri'), scope="playlist-modify-private")
 
 @app.route('/upload', methods=['POST'])
 def upload_file(name=None):

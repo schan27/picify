@@ -9,7 +9,7 @@
   </p>
 
   {% if authorization_code == None %}
-  <a href="https://accounts.spotify.com/authorize?client_id={{ client_id }}&response_type=code&redirect_uri={{ redirect_uri }}"><img src="/static/login.png" alt="Login with Spotify" /></a>
+  <a href="https://accounts.spotify.com/authorize?client_id={{ client_id }}&scope={{ scope }}&response_type=code&redirect_uri={{ redirect_uri }}"><img src="/static/login.png" alt="Login with Spotify" /></a>
   {% else %}
   <form method=post enctype=multipart/form-data action="/upload">
     <input type=file name=file>
