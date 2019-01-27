@@ -19,8 +19,6 @@ The main workflow for the app is as follows:
 - [Sophia Chan](https://github.com/schan27)
 
 ## Screenshots
-![Landing Page](./product/landing.png)
-
 ![Upload Page](./product/upload.png)
 
 ![Playlist-1](./product/playlist-1.png)
