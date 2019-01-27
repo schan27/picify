@@ -17,8 +17,8 @@ def is_word_adjective(word):
         True if the word is an adjective, false otherwise.
     """
 
-    first_synset = wordnet.synsets(word)[0]
-    return (first_synset.pos() == 'a')
+    synsets = wordnet.synsets(word)
+    return any(ss.pos() == 'a' for ss in synsets)
 
 
 def get_associated_adjectives(word, n):
