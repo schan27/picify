@@ -46,6 +46,7 @@ def create_empty_playlist(user_id, name, description=None, public=True):
     # Build request data
     request_data = {"name": name, "public": public}
 
+    print(json.dumps(request_data))
     if description is not None:
         request_data["description"] = description
 
@@ -55,6 +56,8 @@ def create_empty_playlist(user_id, name, description=None, public=True):
         data=json.dumps(request_data),
         headers={"Authorization": "Bearer " + flask.session.get("access_token")},
     )
+
+    print(response.json())
 
     assert response.status_code in (requests.codes.ok, requests.codes.created)
 
@@ -92,7 +95,7 @@ def add_songs_to_playlist(playlist_id, song_ids):
         data=json.dumps({"uris": song_ids}),
         headers={"Authorization": "Bearer " + flask.session.get("access_token")},
     )
-
+    print(response.json())
     assert response.status_code == requests.codes.created
 
 
@@ -111,7 +114,7 @@ def create_spotify_playlist_with_songs(
     """
     # Grab the user's ID
     user_id = get_user_id()
-
+    print('playlist name: ' + playlist_name)
     # Create a playlist
     playlist_id = create_empty_playlist(
         user_id, playlist_name, description=playlist_description, public=playlist_public

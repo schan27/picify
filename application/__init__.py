@@ -14,6 +14,8 @@ UPLOAD_FOLDER = os.path.join(APP_BASE, "images")
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
+songs = []
+
 app = flask.Flask(__name__)
 app.secret_key = os.getenv('secret_key')
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -55,6 +57,15 @@ def upload_file(name=None):
             filename = secure_filename(file.filename)
             filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             file.save(filepath)
+            global songs
             songs = make_playlist.get_songs(filepath)
-            flask.session['songs'] = songs
             return flask.render_template('playlist.html', songs=songs)
+
+@app.route('/create', methods=['POST'])
+def create_playlist():
+    # print(flask.session["songs"])
+    print(flask.session["playlist_name"])
+    playlist_name = flask.session["playlist_name"]
+    song_ids = [song['id'] for song in songs]
+    make_playlist.spotify_playlist.create_spotify_playlist_with_songs(song_ids, playlist_name)
+    return flask.render_template('success.html')
