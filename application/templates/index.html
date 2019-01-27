@@ -1,7 +1,20 @@
 <!doctype html>
-<title>Upload new File</title>
-<h1>Upload new File</h1>
-<form method=post enctype=multipart/form-data>
-  <input type=file name=file>
-  <input type=submit value=Upload>
-</form>
+<head>
+  <title>Upload new File</title>
+</head>
+<body>
+  <h1>Picture 2 Playlist</h1>
+  <p>
+    This app generates a playlist for your uploaded photo. To use it, please log in with Spotify below. You will be redirected to Spotify to log in.
+  </p>
+  {% if authorization_code == None %}
+  <a href="https://accounts.spotify.com/authorize?client_id={{ client_id }}&response_type=code&redirect_uri={{ redirect_uri }}"><img src="/static/login.png" alt="Login with Spotify" /></a>
+  {% else %}
+  <form method=post enctype=multipart/form-data>
+    <input type=file name=file>
+    <input type=submit value=Upload>
+  </form>
+  {% endif %}
+
+
+</body>
