@@ -5,6 +5,7 @@ import os
 from google.oauth2 import service_account
 from make_playlist.image_parse import parse_image
 from make_playlist.words_associate import get_associated_adjectives
+from make_playlist.whitelist import whitelist
 
 
 def main():
@@ -25,14 +26,27 @@ def main():
 
     # Grab adjectives of all the labels and web entities
     word_cluster = image_details["labels"] + image_details["web_entities"]
+    adjectives_cluster = []
 
     for word in word_cluster:
+        adjectives_cluster = get_associated_adjectives(word, 5)
+
         # DEBUG printing!
         adjectives = get_associated_adjectives(word, 5)
-
         print(word)
         print(adjectives)
         print()
+
+    # Grab the intersection of the whitelist and all the words
+    word_cluster_set = set(word_cluster + adjectives_cluster)
+    whitelisted_words_set = word_cluster_set & whitelist
+
+    # DEBUG see what was whitelisted out
+    print("WHITELISTED WORDS")
+    print(word_cluster_set - whitelisted_words_set)
+    print()
+    print("WORDS WE KEEP")
+    print(whitelisted_words_set)
 
 
 if __name__ == "__main__":
