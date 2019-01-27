@@ -1,0 +1,31 @@
+from datamuse import datamuse
+
+
+def is_word_adjective(word):
+    """Determine if a word is an adjective.
+
+    Args:
+        word (string): A single word.
+
+    Returns (bool):
+        True if the word is an adjective, false otherwise.
+    """
+    pass
+
+
+def get_associated_adjectives(word, n):
+    """Get the n adjectives most relating to a word.
+
+    If the work is already an adjective, then just return the adjective
+    wrapped in a list. Same story for if the word is actually not a
+    single word.
+
+    Args:
+        word (string): A word.
+        n (int): The number of associated adjectives to attempt getting.
+
+    Returns (list):
+        The word *and* (if all goes well) its requested associated adjectives.
+    """
+    # Get out if this isn't a single word
+    pass
