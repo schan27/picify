@@ -1,4 +1,6 @@
 import flask
+from dotenv import load_dotenv
+load_dotenv()
 import os
 import io
 from werkzeug.utils import secure_filename
@@ -12,7 +14,7 @@ UPLOAD_FOLDER = os.path.join(APP_BASE, "images")
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
 credentials = service_account.Credentials.from_service_account_file(
-    os.path.join(os.path.dirname(APP_BASE), "grp_credentials.json")
+    os.path.join(os.path.dirname(APP_BASE), "gcp_credentials.json")
 )
 
 app = flask.Flask(__name__)
@@ -24,9 +26,9 @@ def allowed_file(filename):
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @app.route('/', methods=['GET', 'POST'])
-authorized = False
-if (session['authorization_code'] != None):
-    authorized = True
+def index():
+    return flask.render_template('index.html', authorization_code=flask.session.get('authorization_code', ''), client_id=os.getenv('client_id'), redirect_uri=os.getenv('redirect_uri'))
+
 def upload_file(name=None):
     if flask.request.method == 'POST':
         # check if the post flask.request has the file part
@@ -44,7 +46,7 @@ def upload_file(name=None):
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             return flask.redirect(flask.url_for('parse_image',
                                     filename=filename))
-    return flask.render_template('index.html', authorized=authorized, client_id=os.getenv('client_id'))
+
 
 
 @app.route('/parse/<filename>')
