@@ -37,7 +37,7 @@ def index():
 
     return flask.render_template('index.html', authorization_code=flask.session.get('authorization_code', None), client_id=os.getenv('client_id'), redirect_uri=os.getenv('redirect_uri'), scope="playlist-modify-public playlist-modify-private")
 
-@app.route('/upload', methods=['POST'])
+@app.route('/playlist', methods=['POST'])
 def upload_file(name=None):
     if flask.request.method == 'POST':
         # check if the post flask.request has the file part
@@ -55,15 +55,5 @@ def upload_file(name=None):
             filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             file.save(filepath)
             songs = make_playlist.get_songs(filepath)
-            return flask.render_template("playlist.html", songs=songs)
-
-
-@app.route('/uploads/<filename>')
-def uploaded_file(filename):
-    return flask.send_from_directory(app.config['UPLOAD_FOLDER'],
-                               filename)
-
-@app.route('/hello/')
-@app.route('/hello/<name>')
-def hello(name=None):
-    return flask.render_template('hello.html', name=name)
+            flask.session['songs'] = songs
+            return flask.render_template('playlist.html', songs=songs)

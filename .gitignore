@@ -178,3 +178,5 @@ dmypy.json
 
 # Google Cloud Platform credentials
 gcp_credentials.json
+
+.DS_Store
