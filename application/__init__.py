@@ -4,20 +4,15 @@ load_dotenv()
 import os
 from base64 import urlsafe_b64encode
 import requests
-import io
 from werkzeug.utils import secure_filename
-from make_playlist import image_parse
-from google.oauth2 import service_account
+
+import make_playlist
 
 APP_BASE = os.path.dirname(os.path.realpath(__file__))
 
 UPLOAD_FOLDER = os.path.join(APP_BASE, "images")
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
-
-credentials = service_account.Credentials.from_service_account_file(
-    os.path.join(os.path.dirname(APP_BASE), "gcp_credentials.json")
-)
 
 app = flask.Flask(__name__)
 app.secret_key = os.getenv('secret_key')
@@ -57,19 +52,11 @@ def upload_file(name=None):
             return flask.redirect(flask.request.url)
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            return flask.redirect(flask.url_for('parse_image',
-                                    filename=filename))
+            filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            file.save(filepath)
+            songs = make_playlist.get_songs(filepath)
+            return flask.render_template("playlist.html", songs=songs)
 
-
-
-@app.route('/parse/<filename>')
-def parse_image(filename):
-    image_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-    with io.open(image_path, "rb") as image_file:
-        raw_image = image_file.read()
-    result = image_parse.parse_image(raw_image, credentials)
-    return " ".join(result["labels"])
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
