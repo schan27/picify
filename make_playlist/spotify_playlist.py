@@ -5,6 +5,27 @@ import json
 import requests
 
 
+def get_user_id():
+    """Return the user's Spotify ID.
+
+    Returns (string):
+        The user's Spotify ID (*not their URI).
+
+    Raises:
+        AssertionError: The HTTP request to lookup the user failed.
+    """
+    # Make request and validate
+    response = requests.get(
+        "https://api.spotify.com/v1/me",
+        headers={"Authorization": "Bearer " + flask.session.get("access_token")},
+    )
+
+    assert response.status_code == requests.codes.ok
+
+    # Return the user ID
+    return response.json()["id"]
+
+
 def create_empty_playlist(user_id, name, description=None, public=True):
     """Creates an empty Spotify playlist for the user.
 
