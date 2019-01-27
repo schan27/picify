@@ -1,16 +1,18 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <p>
-    This app generates a playlist for your uploaded photo. To use it, please log in with Spotify below. You will be redirected to Spotify to log in.
-  </p>
+  <p>Picify uses Google Cloud Vision to generate playlists based on image analysis. For example, if you upload a photo of a happy couple, you might get a playlist full of love, romance, and cheek kisses. To use it, please log in with Spotify below. You may be redirected to Spotify.</p>
 
   {% if authorization_code == None %}
   <a href="https://accounts.spotify.com/authorize?client_id={{ client_id }}&scope={{ scope }}&response_type=code&redirect_uri={{ redirect_uri }}"><img src="/static/login.png" alt="Login with Spotify" /></a>
   {% else %}
   <form method=post enctype=multipart/form-data action="/playlist">
-    <input type=file name=file>
-    <input type=submit value=Upload>
+    <div class="upload-button-wrapper">
+      <button class="spotify-button">Choose an Image</button>
+      <input type="file" name="file">
+    </div>
+
+    <input class="spotify-button" type="submit" value="Upload"/>
   </form>
   {% endif %}
 

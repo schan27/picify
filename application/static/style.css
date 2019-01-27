@@ -1,0 +1,54 @@
+@font-face {
+  font-family: 'Gotham';
+  src: url('Gotham.woff2') format('woff2');
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'Gotham';
+  src: url('Gotham-Bold.woff2') format('woff2');
+  font-weight: 700;
+}
+body {
+  background-color: #000;
+  color: #FFF;
+  font-family: 'Gotham', sans-serif;
+}
+
+h1 {
+  display: inline-block;
+  font-weight: 700;
+  font-size: 3rem;
+  border-bottom: 3px solid green;
+}
+
+p {
+  font-size: 2rem;
+}
+
+.container {
+  margin: 6rem 12rem;
+}
+
+.spotify-button {
+  font-family: 'Gotham';
+  color: #FFF;
+  font-size: 2rem;
+  background-color: #1DB954;
+  padding: 1rem 2rem;
+  border-radius: 2rem;
+  margin: 1rem 0;
+}
+
+.upload-button-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline;
+}
+
+.upload-button-wrapper input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
