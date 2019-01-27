@@ -34,11 +34,11 @@ def parse_image(image, gcp_credentials, confidence_threshold=0.69):
 
     for annotated_label in label_response.label_annotations:
         if annotated_label.score >= confidence_threshold:
-            labels += [annotated_label.description]
+            labels += [annotated_label.description.lower()]
 
     for web_entity in web_response.web_detection.web_entities:
         if web_entity.score >= confidence_threshold:
-            web_entities += [web_entity.description]
+            web_entities += [web_entity.description.lower()]
 
     return {
         "labels": labels,
