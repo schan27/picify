@@ -4,6 +4,7 @@ load_dotenv()
 import os
 from base64 import urlsafe_b64encode
 import requests
+import urllib
 from werkzeug.utils import secure_filename
 
 import make_playlist
@@ -28,14 +29,14 @@ def allowed_file(filename):
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if (flask.request.args.get('code') != None):
+        print('No code')
         authorization_code = flask.request.args.get('code', '')
         flask.session['authorization_code'] = authorization_code
         base64_encoded_auth = urlsafe_b64encode(bytes(os.getenv("client_id") + ":" + os.getenv("client_secret"), "utf-8")).decode()
 
-        token_request = requests.post('https://accounts.spotify.com/api/token', data={"grant_type": "authorization_code", "code": authorization_code, "redirect_uri": "http://picify.azurewebsites.net"}, headers={'content-type': 'application/x-www-form-urlencoded', "Authorization": "Basic " + base64_encoded_auth})
-
-        access_token = token_request.json()["access_token"]
-        flask.session['access_token'] = access_token
+        token_request = requests.post('https://accounts.spotify.com/api/token', data={"grant_type": "authorization_code", "code": authorization_code, "redirect_uri": os.getenv("redirect_uri")}, headers={'content-type': 'application/x-www-form-urlencoded', "Authorization": "Basic " + base64_encoded_auth})
+        print(token_request.json())
+        flask.session["access_token"] = token_request.json()["access_token"]
 
     return flask.render_template('index.html', authorization_code=flask.session.get('authorization_code', None), client_id=os.getenv('client_id'), redirect_uri=os.getenv('redirect_uri'), scope="playlist-modify-public playlist-modify-private")
 

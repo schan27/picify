@@ -6,9 +6,8 @@ import requests
 import json
 
 def search(search_terms):
-    access_token = flask.session.get('access_token')
+    access_token = flask.session.get("access_token")
     songs = []
-
     for term in search_terms[:5]:
         search_response = requests.get(
             'https://api.spotify.com/v1/search',
