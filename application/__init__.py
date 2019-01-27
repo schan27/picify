@@ -11,7 +11,7 @@ import make_playlist
 
 APP_BASE = os.path.dirname(os.path.realpath(__file__))
 
-UPLOAD_FOLDER = os.path.join(APP_BASE, "images")
+UPLOAD_FOLDER = os.path.join(APP_BASE, "static", "images")
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
@@ -59,8 +59,11 @@ def upload_file(name=None):
             filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             file.save(filepath)
             global songs
-            songs = make_playlist.get_songs(filepath)
-            return flask.render_template('playlist.html', songs=songs)
+            search_terms = make_playlist.get_search_terms(filepath)
+            songs = make_playlist.get_songs(search_terms)
+            imagepath = os.path.join("/", "static", "images", filename)
+            return flask.render_template('playlist.html', search_terms=search_terms, imagepath=imagepath, songs=songs)
+
 
 @app.route('/create', methods=['POST'])
 def create_playlist():

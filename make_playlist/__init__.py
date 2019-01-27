@@ -10,16 +10,16 @@ credentials = service_account.Credentials.from_service_account_file(
     os.path.join(os.path.dirname(APP_BASE), "gcp_credentials.json")
 )
 
-def get_songs(filepath):
+def get_search_terms(filepath):
     with io.open(filepath, "rb") as image_file:
         raw_image = image_file.read()
     image_details = image_parse.parse_image(raw_image, credentials)
-    search_terms = image_details['labels']
-
     # set the playlist name from the 'best guess' from Google
-    print(image_details['title'])
     flask.session['playlist_name'] = image_details['title']
+    search_terms = image_details['labels']
+    return search_terms
 
+
+def get_songs(search_terms):
     # TODO: add adjectives and whitelist logic
-
     return search.search(search_terms)

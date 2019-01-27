@@ -14,11 +14,21 @@ def search(search_terms):
             params={'q': term, 'type': 'track'},
             headers={"Authorization": "Bearer " + access_token})
 
+        # print(search_response)
+
         for track in search_response.json()["tracks"]["items"]:
+            artists = [artist["name"] for artist in track["artists"]]
+            if len(artists) == 1:
+                artists = artists[0]
+            elif len(artists) == 2:
+                artists = " & ".join(artists)
+            else:
+                artists = ", ".join(artists[:-1]) + " & " + artists[-1]
+
             song_details = dict(
                 id=track["id"],
                 name=track["name"],
-                artists=[artist["name"] for artist in track["artists"]],
+                artists=artists,
             )
             songs.append(song_details)
     # flask.session['songs'] = songs

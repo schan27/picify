@@ -8,6 +8,26 @@
   src: url('Gotham-Bold.woff2') format('woff2');
   font-weight: 700;
 }
+
+.playlist-prologue {
+  display: flex;
+}
+
+
+.playlist-image {
+  /* width: 50%; */
+  display: inline-block;
+}
+
+.playlist-image img {
+  width: 50%;
+}
+
+.playlist-search-terms {
+  /* width: 50%; */
+  display: inline-block;
+}
+
 body {
   background-color: #000;
   color: #FFF;
