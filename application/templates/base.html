@@ -2,11 +2,16 @@
 <head>
   <title>Picify</title>
   <link rel="stylesheet" href="/static/style.css">
-
+  <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon-16x16.png">
 </head>
 <body>
   <div class="container">
-      <h1><a href="{{ url_for('index') }}" style="text-decoration: none; color: inherit;">Picify</a></h1>
+    <div class="logo">
+      <img src="/static/icon.png" alt="logo" />
+      <h1 class="logo-text"><a href="{{ url_for('index') }}" style="text-decoration: none; color: inherit;">Picify</a></h1>
+    </div>
+
       <section class="content">
         {% block content %}
         {% endblock %}
