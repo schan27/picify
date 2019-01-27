@@ -22,3 +22,9 @@ The main workflow for the app is as follows:
 ![Landing Page](./product/landing.png)
 
 ![Upload Page](./product/upload.png)
+
+![Playlist-1](./product/playlist-1.png)
+
+![Playlist-2](./product/playlist-2.png)
+
+![Share](./product/share.png)
