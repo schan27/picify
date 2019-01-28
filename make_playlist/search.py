@@ -2,6 +2,7 @@ import flask
 from dotenv import load_dotenv
 load_dotenv()
 import os
+import random
 import requests
 import json
 
@@ -76,5 +77,8 @@ def search_by_playlist(search_terms):
 
                 song_details = dict(id=track["id"], name=track["name"], artists=artists)
                 songs.append(song_details)
+
+    # Randomize the songs we sampled from the above playlists
+    random.shuffle(songs)
 
     return songs
