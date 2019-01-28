@@ -43,7 +43,7 @@ def search_by_playlist(search_terms):
     # Magic numbers
     search_terms_used = 5
     playlists_per_keyword = 5
-    tracks_per_playlist = 5
+    tracks_per_playlist = 3
 
     songs = []
 
